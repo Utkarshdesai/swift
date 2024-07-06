@@ -3,7 +3,6 @@ import { usercomment } from "../types/usercomment"
 import { useEffect, useState } from "react"
 import Commentbar from "./Commentbar"
 import Tableheader from "./Tableheader"
-//find last index and values to it 
 
 
 const Comment = () => {
@@ -16,7 +15,8 @@ const Comment = () => {
   const [sortColumn, setSortColumn] = useState<string>('');
  
  
-  
+  console.log(body)
+
   // get comment data from api 
   const commentdata = async () => {
 
@@ -41,26 +41,7 @@ const Comment = () => {
      }
   },[])
  
-  // persist values 
-  useEffect(() => {
-     const storedSortOrder  = localStorage.getItem('sortOrder')  as 'asc' | 'dsc';
-    //const storedSearchQuery = localStorage.getItem('searchQuery') 
-    const storedCurrentPage = localStorage.getItem('currentPage');
-    const storedPageSize = localStorage.getItem('pageSize');
-
-    if (storedSortOrder) setSortOrder(storedSortOrder);
-    ////if (storedSearchQuery)  setsearch(storedSearchQuery)
-    if (storedCurrentPage) setcurrentpage(parseInt(storedCurrentPage));
-    if (storedPageSize) setpagesize(parseInt(storedPageSize));
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('sortOrder', sortOrder);
-    //localStorage.setItem('searchQuery', setsearch);
-    localStorage.setItem('currentPage', currentpage.toString());
-    localStorage.setItem('pageSize', pagesize.toString());
-  }, [pagesize,setsearch ,currentpage,sortOrder]);
-
+   
 
 
  //next button 
@@ -76,7 +57,7 @@ const Comment = () => {
  //pagination logic 
  const pagedata = () => {
    const firstindex  = (currentpage - 1) * pagesize
-   return (body as usercomment).slice(firstindex, firstindex + pagesize)
+   return body.slice(firstindex, firstindex + pagesize)
  }
 
 
@@ -90,6 +71,7 @@ const Comment = () => {
    
     //filter logic 
         
+       
             console.log(search)
             const filterComment = body.filter((item : usercomment) => 
                 item.email.includes(search) || 
@@ -241,7 +223,7 @@ const handleSorting = (column : string) => {
  };
  
 
-//  console.log(sortOrder)
+// console.log(sortOrder)
 //  console.log(sortColumn)
   
 
@@ -289,7 +271,7 @@ const handleSorting = (column : string) => {
                <div > 
                 {   
                    //show table data
-                    pagedata().map((item :usercomment[] , ) => <Commentbar  key ={item.id} item={item}></Commentbar> )
+                    pagedata().map((item :usercomment[] , ) => <Commentbar  key ={item.id} item ={item}></Commentbar>)
                     
                 }
                </div>

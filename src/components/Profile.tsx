@@ -26,7 +26,6 @@ const Profile = () => {
   }  
 
   
-
   useEffect(()=>{
     try {
       profiledata()
