@@ -223,7 +223,7 @@ const handleSorting = (column : string) => {
  };
  
 
-//  console.log(sortOrder)
+// console.log(sortOrder)
 //  console.log(sortColumn)
   
 
