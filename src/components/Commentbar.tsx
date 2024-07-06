@@ -8,7 +8,7 @@
 
 const Commentbar = ( { item }: { item: itemprop }) => {
 
-  
+  console.log(item)
  
   return (
     <div className="m-[20px]"> 
